@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MY DOCUMENTS</title>
+    <link rel="icon" type="png" href="https://i.ibb.co/7Jgjgn5R/image.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: #ffd700;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem 6rem 1rem;
+        }
+
+        .search-container {
+            margin: 2rem auto;
+            max-width: 800px;
+            position: relative;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 2px 12px rgba(255, 215, 0, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: #ffd700;
+            padding: 1.2rem;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 0;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ffd700;
+        }
+
+        .pdf-list {
+            list-style-type: none;
+            padding: 1.5rem;
+        }
+
+        .pdf-list li {
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .pdf-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-list a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-list a:hover {
+            color: #000;
+            background-color: #fff9e6;
+        }
+
+        .pdf-list i {
+            margin-right: 15px;
+            color: #ffd700;
+            font-size: 1.2rem;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .date-badge {
+            background-color: #ffd700;
+            color: #000;
+            padding: 0.3rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: #ffd700;
+            text-align: center;
+            padding: 1.5rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        /* Fix for iOS Safari 100vh issue */
+        @supports (-webkit-touch-callout: none) {
+
+            body,
+            html {
+                height: -webkit-fill-available;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        section:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        section:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        section:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Doc</h1>
+    </header>
+
+    <main>
+        
+
+        <section id="passport">
+            <h2 class="section-title">Passport & Other Documents</h2>
+            <ul class="pdf-list">
+                <li><a href="pdfs/biodata.pdf" target="_blank"><i class="fas fa-user"></i><span class="date-badge">Profile</span>Biodata</a></li>
+                
+                <li><a href="pdfs/10 & 12 transcript.pdf" target="_blank"><i class="fas fa-file-alt"></i><span class="date-badge">Marksheets</span>10th & 12th Transcript</a></li>
+                <li><a href="pdfs/10th & 12th & BBA all sem passing marksheet.pdf" target="_blank"><i class="fas fa-file-alt"></i><span class="date-badge">Marksheets</span>10th, 12th & BBA Passing Marksheet</a></li>
+                <li><a href="pdfs/Aanandi Baa.pdf" target="_blank"><i class="fas fa-user"></i><span class="date-badge">Family</span>Aanandi Baa</a></li>
+                <li><a href="pdfs/Airside Full ID.pdf" target="_blank"><i class="fas fa-id-card"></i><span class="date-badge">ID</span>Airside Full ID</a></li>
+                <li><a href="pdfs/Birth certificate.pdf" target="_blank"><i class="fas fa-baby"></i><span class="date-badge">ID</span>Birth Certificate</a></li>
+                <li><a href="pdfs/Drashti and Nilkanth Photo.pdf" target="_blank"><i class="fas fa-image"></i><span class="date-badge">Photo</span>Drashti & Nilkanth Photo</a></li>
+                <li><a href="pdfs/Full License.pdf" target="_blank"><i class="fas fa-car"></i><span class="date-badge">ID</span>Full License</a></li>
+                <li><a href="pdfs/HMRC.pdf" target="_blank"><i class="fas fa-file-invoice"></i><span class="date-badge">Tax</span>HMRC</a></li>
+                <li><a href="pdfs/Marriage Certificate.pdf" target="_blank"><i class="fas fa-ring"></i><span class="date-badge">ID</span>Marriage Certificate</a></li>
+                <li><a href="pdfs/PAN & ADHAR CARD.pdf" target="_blank"><i class="fas fa-id-card"></i><span class="date-badge">ID</span>PAN & Aadhar Card</a></li>
+                <li><a href="pdfs/V5C Toyota Corolla.pdf" target="_blank"><i class="fas fa-car"></i><span class="date-badge">ID</span>V5C Toyota Corolla</a></li>
+            </ul>
+        </section>
+
+    
+
+        
+        
+    </main>
+
+
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const pdfListItems = document.querySelectorAll('.pdf-list li');
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+
+            pdfListItems.forEach(item => {
+                const linkText = item.textContent.toLowerCase();
+                if (linkText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Check if any results are visible
+            const visibleItems = document.querySelectorAll('.pdf-list li[style="display: block"]');
+            const sections = document.querySelectorAll('section');
+
+            // Hide sections with no visible items
+            sections.forEach(section => {
+                const sectionItems = section.querySelectorAll('.pdf-list li[style="display: block"]');
+                if (sectionItems.length === 0) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
+        });
+
+        // Clear search when tapping the X on mobile
+        searchInput.addEventListener('search', function () {
+            if (this.value === '') {
+                // Reset visibility of all items and sections
+                pdfListItems.forEach(item => item.style.display = 'block');
+                document.querySelectorAll('section').forEach(section => section.style.display = 'block');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
